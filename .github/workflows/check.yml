@@ -1,0 +1,51 @@
+name: Check
+
+# Every pull request, from a person or from the factory, runs the repo's own
+# checks. The pre-commit hook runs a fast subset on each commit; this runs all
+# of them, so nothing reaches main on an agent's word that it ran them. The
+# factory opens its pull requests with FACTORY_PAT, so they trigger this too.
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: check-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          # The exemption ratchet compares against the merge-base.
+          fetch-depth: 0
+
+      - name: Setup Node.js 22
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Migrate and seed the database
+        run: |
+          npm run db:migrate
+          npm run db:seed
+
+      - name: Check
+        run: npm run check
+
+      - name: Lint exemptions only go down
+        run: node scripts/check-lint-exemptions.js --ratchet "origin/${{ github.base_ref || 'main' }}"
+
+      - name: Build
+        run: npm run build
