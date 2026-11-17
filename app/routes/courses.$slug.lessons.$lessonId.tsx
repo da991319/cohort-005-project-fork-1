@@ -1,3 +1,5 @@
+import { data, isRouteErrorResponse, Link } from "react-router";
+import { z } from "zod";
 /* oxlint-disable max-lines -- legacy: predates this rule */
 import { useState, useEffect, useCallback } from "react";
 import { Link, useFetcher, useNavigate } from "react-router";
@@ -7,72 +9,29 @@ import {
   coursePermissions,
   type Capability,
   type CourseRef,
-  type DenialReason,
 } from "~/modules/permissions/course-permissions.server";
-import { renderComment } from "~/lib/comment-markdown.server";
-import { markdown, type Markdown } from "~/lib/text";
+import {
+  computeResult,
+  getCommentById,
+  getQuizById,
+  loadLessonPage,
+  markLessonComplete,
+} from "~/modules/lesson-page/index.server";
 import {
   createComment,
   deleteComment,
   editComment,
 } from "~/lib/comments.server";
 import { defaultNotifications } from "~/lib/notifications.server";
-import { isBookmarked, toggleBookmark } from "~/lib/bookmarks.server";
-import { getNote, saveNote } from "~/lib/notes.server";
+import { toggleBookmark } from "~/lib/bookmarks.server";
+import { saveNote } from "~/lib/notes.server";
 import { MAX_NOTE_LENGTH } from "~/lib/notes";
-import {
-  CommentThread,
-  type RenderedComment,
-} from "~/components/comment-thread";
 import { db } from "~/db";
-import {
-  categories,
-  comments,
-  courses,
-  lessonProgress,
-  lessons,
-  modules,
-  quizzes,
-  quizQuestions,
-  quizOptions,
-  quizAttempts,
-  quizAnswers,
-  users,
-  videoWatchEvents,
-  LessonProgressStatus,
-  UserRole,
-} from "~/db/schema";
-import { and, asc, desc, eq, or, sql } from "drizzle-orm";
-import { Button } from "~/components/ui/button";
-import { Card, CardContent } from "~/components/ui/card";
-import { Textarea } from "~/components/ui/textarea";
-import {
-  AlertTriangle,
-  CheckCircle2,
-  ChevronDown,
-  ChevronLeft,
-  ChevronRight,
-  Circle,
-  Clock,
-  Bookmark,
-  BookmarkCheck,
-  Github,
-  HelpCircle,
-  NotebookPen,
-  MapPin,
-  PlayCircle,
-  ShieldAlert,
-  XCircle,
-  Trophy,
-  RotateCcw,
-} from "lucide-react";
-import { cn, formatDuration, formatRelativeTime } from "~/lib/utils";
-import { renderMarkdown } from "~/lib/markdown.server";
-import { YouTubePlayer } from "~/components/youtube-player";
-import { data, isRouteErrorResponse } from "react-router";
-import { z } from "zod";
-import { countryName } from "~/lib/ppp";
 import { parseFormData } from "~/lib/validation";
+import { AlertTriangle } from "lucide-react";
+import { Button } from "~/components/ui/button";
+import { LockedLesson } from "~/components/lesson/locked-lesson";
+import { FullLesson } from "~/components/lesson/full-lesson";
 
 const createCommentSchema = z.object({
   intent: z.literal("create-comment"),
@@ -982,7 +941,7 @@ export async function action({ params, request }: Route.ActionArgs) {
     }
     // Scope the quiz to this lesson so a quiz elsewhere can't be reached by
     // posting its id to this route.
-    const quiz = db.select().from(quizzes).where(eq(quizzes.id, quizId)).get();
+    const quiz = getQuizById(quizId);
     if (!quiz || quiz.lessonId !== lessonId) {
       throw data("Quiz not found", { status: 404 });
     }
@@ -1010,36 +969,6 @@ export async function action({ params, request }: Route.ActionArgs) {
 
   throw data("Invalid action", { status: 400 });
 }
-
-const AUTOPLAY_KEY = "cadence-autoplay";
-
-function useAutoplay() {
-  const [enabled, setEnabled] = useState(false);
-
-  useEffect(() => {
-    try {
-      setEnabled(localStorage.getItem(AUTOPLAY_KEY) === "true");
-    } catch {
-      /* silently fail */
-    }
-  }, []);
-
-  const toggle = useCallback(() => {
-    setEnabled((prev) => {
-      const next = !prev;
-      try {
-        localStorage.setItem(AUTOPLAY_KEY, String(next));
-      } catch {
-        /* silently fail */
-      }
-      return next;
-    });
-  }, []);
-
-  return [enabled, toggle] as const;
-}
-
-type LessonLoaderData = Route.ComponentProps["loaderData"];
 
 export default function LessonViewer({ loaderData }: Route.ComponentProps) {
   if (loaderData.view === "locked") {
