@@ -15,6 +15,9 @@ Read CODING_STANDARDS.md.
   rejects a commit, fix the work and commit again. The hook stays as it is:
   no `--no-verify`, no edits to `.husky/`, `scripts/pre-commit.sh` or
   `core.hooksPath`.
+- A file on the `BASELINE` list in `scripts/check-file-tokens.js` is already
+  over the size limit and has its own split ticket. Make your change in it
+  and leave the split to that ticket.
 - Finish with at least one commit and a clean working tree. The workflow
   pushes and opens the pull request.
 - Leave `.github/` untouched.

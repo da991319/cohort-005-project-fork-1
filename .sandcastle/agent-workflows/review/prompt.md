@@ -7,6 +7,10 @@ Review it with the code-review skill, .agents/skills/code-review/SKILL.md:
 - spec: /tmp/review-spec.md
 - standards: CODING_STANDARDS.md
 
+When the diff moves code between files, check the move with
+`git diff --color-moved=dimmed-zebra --color-moved-ws=allow-indentation-change origin/{{BASE_REF}}...HEAD`:
+moved lines show dimmed, so only the lines that changed stand out.
+
 Leave the human reviewer as little as possible. Fix every finding you can on
 `{{BRANCH}}`, and commit each fix through the pre-commit hook. The workflow
 pushes your commits. Leave `.github/` untouched.
