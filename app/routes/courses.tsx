@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { Form, Link, useNavigation, isRouteErrorResponse } from "react-router";
 import type { Route } from "./+types/courses";
 import { db } from "~/db";
@@ -31,6 +32,7 @@ import { resolveCountry } from "~/lib/country.server";
 import { calculatePppPrice } from "~/lib/ppp";
 import { StarRating } from "~/components/star-rating";
 
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 function buildCourseQuery(
   search: string | null,
   category: string | null,
@@ -153,6 +155,7 @@ function getCourseLessonIds(courseId: number): number[] {
   return courseLessons.map((l) => l.id);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function calculateProgress(
   userId: number,
   courseId: number,
@@ -282,6 +285,7 @@ export function meta() {
   ];
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loader({ request, url }: Route.LoaderArgs) {
   const search = url.searchParams.get("q");
   const category = url.searchParams.get("category");
@@ -389,6 +393,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function CourseCatalog({ loaderData }: Route.ComponentProps) {
   const { courses, categories, search, category, currentUserId } = loaderData;
   const navigation = useNavigation();
@@ -452,6 +457,7 @@ export default function CourseCatalog({ loaderData }: Route.ComponentProps) {
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
           {courses.map((course) => (
             <Link
               key={course.id}

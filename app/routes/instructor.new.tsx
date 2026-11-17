@@ -39,6 +39,7 @@ function getCourseBySlug(slug: string) {
   return db.select().from(courses).where(eq(courses.slug, slug)).get();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function createCourse(
   title: string,
   slug: string,
@@ -131,6 +132,7 @@ export async function action({ request }: Route.ActionArgs) {
   throw redirect(`/courses/${course.slug}`);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function InstructorNewCourse({
   loaderData,
   actionData,

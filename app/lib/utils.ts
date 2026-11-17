@@ -49,6 +49,7 @@ export function formatRelativeTime(iso: string): string {
   });
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export function formatDuration(
   minutes: number,
   showHours: boolean,

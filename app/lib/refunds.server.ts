@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import {
   and,
   asc,
@@ -303,6 +304,7 @@ type RefundCheck = { ok: true; purchase: Purchase } | Failure;
  * Whether this buyer may raise a Refund Request on this Purchase today. Only
  * the person who paid may, and only one Refund Request can be open at once.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export function checkRefundRequest(
   db: Queryable,
   purchaseId: number,
@@ -355,6 +357,7 @@ export type RefundOffer = {
  * newest Individual Purchase of the course, if it can be refunded. Team
  * Licences are refunded from the team page instead.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export function getRefundOffer(
   db: Queryable,
   buyerId: number,
@@ -380,6 +383,7 @@ export type RaiseResult =
   | { ok: true; refundRequestId: number; kind: PurchaseKind; email: Email }
   | Failure;
 
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 export async function raiseRefundRequest(
   db: Db,
   purchaseId: number,
@@ -678,6 +682,7 @@ function findOpenRefundRequest(
  * - A Team Licence: its Unclaimed Seats can never be claimed. Refused if any
  *   Seat has been claimed (docs/adr/0003).
  */
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 export async function approveRefundRequest(
   db: Db,
   refundRequestId: number,
@@ -686,6 +691,7 @@ export async function approveRefundRequest(
   now: Date,
   notifications: Notifications
 ): Promise<DecisionResult> {
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   const result = db.transaction((tx): DecisionResult => {
     const found = findOpenRefundRequest(tx, refundRequestId);
     if (!found.ok) return found;
@@ -760,6 +766,7 @@ export async function approveRefundRequest(
  * the buyer may raise a new Refund Request. The note is required: it is how
  * the buyer learns whether another request is worth raising.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export async function declineRefundRequest(
   db: Db,
   refundRequestId: number,
@@ -808,6 +815,7 @@ export async function declineRefundRequest(
 }
 
 /** The email the buyer gets once their Refund Request is decided. */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function buildDecisionEmail(
   db: Queryable,
   purchase: Purchase,
@@ -861,6 +869,7 @@ function buildDecisionEmail(
  * Tells the buyer how their Refund Request was decided. Reads the decision
  * back after it has committed.
  */
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 async function notifyDecision(
   db: Db,
   refundRequestId: number,

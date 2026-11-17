@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import {
   and,
   count,
@@ -162,6 +163,7 @@ export type CourseCountryRevenue = {
   rows: CountryRevenueRow[];
 };
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function scopeOn(
   dateColumn: SQLiteColumn,
   instructorId: number | null,
@@ -205,6 +207,7 @@ function ownedBy(instructorId: number | null) {
     : eq(courses.instructorId, instructorId);
 }
 
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 function getStudentRevenue(
   db: Db,
   instructorId: number | null,
@@ -284,6 +287,7 @@ function getStudentRevenue(
 
 const TOP_BUYER_LIMIT = 10;
 
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 function getTopBuyers(
   db: Db,
   instructorId: number | null,
@@ -358,6 +362,7 @@ function getTopBuyers(
   }));
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function getRatingSummary(
   db: Db,
   instructorId: number | null,
@@ -409,6 +414,7 @@ function bucketRange(
   return buckets;
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function getRevenueOverTime(
   db: Db,
   instructorId: number | null,
@@ -525,6 +531,7 @@ const REACHED_STATUSES = [
   LessonProgressStatus.Completed,
 ];
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getCourseDropOff(db: Db, courseId: number): CourseFunnel {
   const enrolled = db
     .select({ enrolledCount: countDistinct(enrollments.userId) })
@@ -630,6 +637,7 @@ function getCourseDropOff(db: Db, courseId: number): CourseFunnel {
   return { enrolledCount, modules: grouped };
 }
 
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 function getCourseQuizPassRates(
   db: Db,
   courseId: number,
@@ -714,6 +722,7 @@ function getCourseQuizPassRates(
   });
 }
 
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 function getCourseRevenueByCountry(
   db: Db,
   courseId: number,
@@ -811,6 +820,7 @@ export type RefundExposure = {
  * falls back to its default. `now` is the only clock read, so the same
  * database, params and `now` always produce the same result.
  */
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 export function getInstructorAnalytics(
   db: Db,
   { userId, isAdmin }: AnalyticsViewer,

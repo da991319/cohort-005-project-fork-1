@@ -127,6 +127,7 @@ export async function getCourseDecisions(
  * Throws 404 when the course isn't found, then 401 when signed out, then 403
  * when the Person lacks the capability. Returns the Person and the course.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export async function requireCapability(
   db: Db,
   request: Request,

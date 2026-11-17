@@ -90,6 +90,7 @@ export async function getFeedPreferences(
  * person's set alone. A person with no set yet gets the defaults written with
  * the change. Throws when the port fails, so the caller can tell the person.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export async function setFeedPreference(
   notifications: Notifications,
   userId: number,

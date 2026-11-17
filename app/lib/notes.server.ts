@@ -34,6 +34,7 @@ export type SaveNoteResult =
  * Writes the Student's Note on the Lesson. Saving again replaces the body and
  * moves `updatedAt` on; `createdAt` stays where it was.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export function saveNote(
   db: Db,
   studentId: number,

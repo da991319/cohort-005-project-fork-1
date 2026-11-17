@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 /**
  * render.ts — turns a captured request/response into a readable Markdown doc.
  *
@@ -581,8 +582,10 @@ function renderGeminiTools(tools: any[]): string {
     if (Array.isArray(tool?.functionDeclarations)) {
       for (const fn of tool.functionDeclarations) {
         const lines = [`### ${fn.name ?? "(unnamed tool)"}`, ""];
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (fn.description) lines.push(fn.description, "");
         const schema = fn.parametersJsonSchema ?? fn.parameters;
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (schema) lines.push(fenceJson(schema));
         rendered.push(lines.join("\n"));
       }
@@ -656,7 +659,9 @@ function renderGeminiResponse(raw: string): string {
     const parts = candidate?.content?.parts;
     if (Array.isArray(parts)) {
       for (const part of parts) {
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (typeof part?.text === "string") {
+          // oxlint-disable-next-line max-depth -- legacy: predates this rule
           if (part.thought) thinking += part.text;
           else text += part.text;
         } else if (part?.functionCall) {
@@ -785,6 +790,7 @@ function sseData(raw: string): any[] {
   return out;
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function renderAnthropicResponse(raw: string): string {
   const events = sseData(raw);
   const blocks: Record<
@@ -879,8 +885,11 @@ function renderOpenAIChatStream(events: any[]): string {
       for (const tc of delta.tool_calls) {
         const idx = tc.index ?? 0;
         toolCalls[idx] ??= { name: "", args: "", id: tc.id };
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (tc.id) toolCalls[idx].id = tc.id;
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (tc.function?.name) toolCalls[idx].name += tc.function.name;
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (tc.function?.arguments)
           toolCalls[idx].args += tc.function.arguments;
       }
@@ -914,6 +923,7 @@ function renderOpenAIChatStream(events: any[]): string {
   return parts.length ? parts.join("\n\n") : "_(no content decoded)_";
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function renderOpenAIResponsesStream(events: any[]): string {
   let text = "";
   const toolCalls: Record<string, { name: string; args: string }> = {};

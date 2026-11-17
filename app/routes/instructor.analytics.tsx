@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { Link, isRouteErrorResponse, useSearchParams } from "react-router";
 import { Area, AreaChart, CartesianGrid, XAxis, YAxis } from "recharts";
 import type { Route } from "./+types/instructor.analytics";
@@ -146,6 +147,7 @@ function StatCard({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function TopBuyers({
   buyers,
 }: {
@@ -217,6 +219,7 @@ function TopBuyers({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function RevenueChart({ series }: { series: RevenueSeries }) {
   return (
     <ChartContainer config={chartConfig} className="h-64 w-full">
@@ -411,6 +414,7 @@ function DropOffFunnel({ funnel }: { funnel: CourseFunnel }) {
  * are allowed, so "pass rate" has more than one defensible meaning and the
  * reader cannot tell which one they are looking at from the number alone.
  */
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function QuizPassRates({ quizzes }: { quizzes: QuizPassRate[] }) {
   if (quizzes.length === 0) {
     return (
@@ -475,6 +479,7 @@ function QuizPassRates({ quizzes }: { quizzes: QuizPassRate[] }) {
 }
 
 /** Where a course's buyers are, and what parity pricing costs the seller. */
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function RevenueByCountry({ breakdown }: { breakdown: CourseCountryRevenue }) {
   if (breakdown.rows.length === 0) {
     return (
@@ -552,6 +557,7 @@ function RevenueByCountry({ breakdown }: { breakdown: CourseCountryRevenue }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function RefundExposurePanel({ exposure }: { exposure: RefundExposure }) {
   if (exposure.purchaseCount === 0) {
     return (
@@ -619,6 +625,7 @@ function RefundExposurePanel({ exposure }: { exposure: RefundExposure }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function InstructorAnalytics({
   loaderData,
 }: Route.ComponentProps) {

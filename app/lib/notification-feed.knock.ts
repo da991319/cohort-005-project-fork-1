@@ -26,6 +26,7 @@ const REFRESH_BEFORE_EXPIRY_MS = 5 * 60 * 1000;
  *   shortly before the current token expires, so a tab left open for hours
  *   keeps its live feed.
  */
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function knockNotificationFeed(
   credentials: FeedCredentials,
   refreshUserToken: () => Promise<string | null>

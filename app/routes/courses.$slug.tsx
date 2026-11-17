@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { useEffect, useState } from "react";
 import { Link, useFetcher, useSearchParams } from "react-router";
 import { toast } from "sonner";
@@ -50,6 +51,7 @@ import { parseFormData } from "~/lib/validation";
 import { MAX_RATING, MIN_RATING } from "~/lib/ratings";
 import { StarRating, StarRatingInput } from "~/components/star-rating";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getCourseWithDetails(id: number) {
   const course = db
     .select({
@@ -143,6 +145,7 @@ function getCourseLessonIds(courseId: number): number[] {
   return courseLessons.map((l) => l.id);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function calculateProgress(
   userId: number,
   courseId: number,
@@ -359,6 +362,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
   ];
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loader({ params, request }: Route.LoaderArgs) {
   // Public page: signed-out visitors and people without an Enrollment still
   // see it.
@@ -513,6 +517,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function CourseDetail({ loaderData }: Route.ComponentProps) {
   const {
     course,
@@ -865,6 +870,7 @@ function RateCourse({ userRating }: { userRating: number | null }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function RequestRefund({
   slug,
   purchaseId,
@@ -937,6 +943,7 @@ function RequestRefund({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function CourseContent({
   course,
   canView,
@@ -969,6 +976,7 @@ function CourseContent({
         </p>
       ) : (
         <div className="space-y-4">
+          {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
           {course.modules.map((mod) => (
             <Card key={mod.id}>
               <CardHeader>
@@ -986,6 +994,7 @@ function CourseContent({
               </CardHeader>
               <CardContent>
                 <ul className="space-y-2">
+                  {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                   {mod.lessons.map((lesson) => {
                     const status = lessonProgressMap[lesson.id];
                     const isCompleted =

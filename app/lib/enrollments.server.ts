@@ -40,6 +40,7 @@ export type EnrollResult =
  * to the course's Instructor. A Notification failure is logged and never fails
  * the Enrollment.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export async function enrollStudent(
   db: Db,
   studentId: number,
@@ -59,6 +60,7 @@ export async function enrollStudent(
  * transaction. Once that transaction commits, they must call
  * `notifyInstructorOfEnrollment` with the new Enrollment.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export function enrollStudentInTransaction(
   db: Queryable,
   studentId: number,

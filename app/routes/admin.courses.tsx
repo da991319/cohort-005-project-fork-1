@@ -120,6 +120,7 @@ export async function action({ request }: Route.ActionArgs) {
   throw data("Invalid action.", { status: 400 });
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function CourseRow({
   course,
 }: {
@@ -274,6 +275,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function AdminCourses({ loaderData }: Route.ComponentProps) {
   const { courses } = loaderData;
 

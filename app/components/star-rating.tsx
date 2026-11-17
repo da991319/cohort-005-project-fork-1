@@ -9,6 +9,7 @@ const STARS = Array.from({ length: MAX_RATING }, (_, i) => i + 1);
  * Read-only average rating display. Renders partially-filled stars by clipping
  * a filled star over an outlined one.
  */
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function StarRating({
   average,
   count,

@@ -98,6 +98,7 @@ function setPrice(price: number, pppEnabled = true, courseId = base.course.id) {
     .run();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function buy(
   userId: number,
   country: string | null,

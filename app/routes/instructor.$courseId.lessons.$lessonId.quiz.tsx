@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { useState } from "react";
 import { Link, useFetcher, useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -182,6 +183,7 @@ function deleteQuiz(id: number) {
   return db.delete(quizzes).where(eq(quizzes.id, id)).returning().get();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function createQuestion(
   quizId: number,
   questionText: string,
@@ -256,6 +258,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
 
 // ─── Action ───
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function action({ params, request }: Route.ActionArgs) {
   await coursePermissions.requireCapability(request, "manage", {
     courseId: params.courseId,
@@ -373,6 +376,7 @@ function StepIndicator({
 
 // ─── Component ───
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function QuizBuilderWizard({
   loaderData,
 }: Route.ComponentProps) {
@@ -541,6 +545,7 @@ export default function QuizBuilderWizard({
     });
   }
 
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   function renderStep2() {
     return (
       <div className="space-y-4">
@@ -562,14 +567,17 @@ export default function QuizBuilderWizard({
 
             <DragDropContext onDragEnd={handleQuestionDragEnd}>
               <Droppable droppableId="quiz-questions" type="question">
+                {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                 {(provided) => (
                   <div
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                     className="space-y-4"
                   >
+                    {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                     {wizard.questions.map((q, idx) => (
                       <Draggable key={q.id} draggableId={q.id} index={idx}>
+                        {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                         {(dragProvided, snapshot) => (
                           <div
                             ref={dragProvided.innerRef}
@@ -720,6 +728,7 @@ export default function QuizBuilderWizard({
     }));
   }
 
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   function renderStep3() {
     return (
       <div className="space-y-4">
@@ -737,6 +746,7 @@ export default function QuizBuilderWizard({
               </p>
             )}
 
+            {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
             {wizard.questions.map((q, idx) => (
               <div key={q.id} className="rounded-lg border p-4">
                 <div className="mb-3 flex items-center gap-2">
@@ -816,6 +826,7 @@ export default function QuizBuilderWizard({
   }
 
   // ─── Step 4: Review ───
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   function renderStep4() {
     const validationErrors: string[] = [];
     if (!wizard.title.trim()) validationErrors.push("Quiz title is required.");

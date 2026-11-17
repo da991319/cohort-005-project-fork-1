@@ -25,6 +25,7 @@ export function isBookmarked(
  * Bookmarks the Lesson, or removes the Bookmark if there is one. Returns
  * whether the Lesson is bookmarked afterwards.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export function toggleBookmark(
   db: Db,
   studentId: number,

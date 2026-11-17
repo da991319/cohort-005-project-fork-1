@@ -166,8 +166,7 @@ export async function sendSafely(
   );
 }
 
-// Logging is this fallback's whole job.
-/* oxlint-disable no-console */
+/* oxlint-disable no-console -- logging is this fallback's whole job */
 export function loggingNotifications(): Notifications {
   return {
     async send(notification, idempotencyKey) {

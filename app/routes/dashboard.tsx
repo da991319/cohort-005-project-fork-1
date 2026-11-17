@@ -78,6 +78,7 @@ function getLessonProgress(userId: number, lessonId: number) {
     .get();
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function calculateProgress(
   userId: number,
   courseId: number,
@@ -277,6 +278,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function Dashboard({ loaderData }: Route.ComponentProps) {
   const { inProgressCourses, completedCourses } = loaderData;
   const totalCourses = inProgressCourses.length + completedCourses.length;
@@ -317,6 +319,7 @@ export default function Dashboard({ loaderData }: Route.ComponentProps) {
             <section>
               <h2 className="mb-4 text-xl font-semibold">In Progress</h2>
               <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+                {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                 {inProgressCourses.map((course) => (
                   <Card
                     key={course.enrollmentId}

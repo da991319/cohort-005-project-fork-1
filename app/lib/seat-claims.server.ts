@@ -34,6 +34,7 @@ export type ClaimSeatResult =
  * bought the Team Licence and the new Enrollment Notification to the course's
  * Instructor. A Notification failure is logged and never fails the claim.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export async function claimSeat(
   db: Db,
   seatCode: string,
@@ -56,6 +57,7 @@ export async function claimSeat(
   return result;
 }
 
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 function claimSeatInTransaction(
   db: Db,
   seatCode: string,
