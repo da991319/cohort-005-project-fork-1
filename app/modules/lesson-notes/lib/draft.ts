@@ -9,7 +9,11 @@ export type NoteDraftState = {
   canSave: boolean;
 };
 
-export function describeDraft(
+/**
+ * What the note editor should show for the text in the box, given the note
+ * as last saved (`null` when the Student has never saved one).
+ */
+export function describeNoteDraft(
   draft: string,
   savedBody: string | null
 ): NoteDraftState {
