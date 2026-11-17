@@ -27,3 +27,7 @@ Enforced by dependency-cruiser (`.dependency-cruiser.cjs`). Run `npm run lint:bo
 4. **No cycles.** No dependency cycles anywhere in `app/`.
 
 Modules are flat: one level of folders under `app/modules/`. A module may not contain another module.
+
+## Testing a module that reads the database
+
+Every module ships tests (`npm run lint:modules` fails on one without). When the module reads the database, inject it: export a factory that takes the database, and a default instance bound to `~/db`. Tests call the factory with `createTestDb()` from `~/test/setup`. `instructor-analytics/index.server.ts` (`createInstructorAnalytics`) is the worked example.

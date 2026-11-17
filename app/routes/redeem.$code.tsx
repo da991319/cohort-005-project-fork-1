@@ -128,6 +128,7 @@ export async function action({ params, request }: Route.ActionArgs) {
   throw redirect(`/courses/${course.slug}/welcome`);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function Redeem({
   loaderData,
   actionData,

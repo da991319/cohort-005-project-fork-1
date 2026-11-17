@@ -14,6 +14,7 @@ type MonacoMarkdownEditorProps = {
   onSave?: () => void;
 };
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function MonacoMarkdownEditor({
   value,
   onChange,
@@ -33,6 +34,7 @@ export function MonacoMarkdownEditor({
     });
   }, []);
 
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   const handleMount: OnMount = useCallback((editor, monaco) => {
     editorRef.current = editor;
 

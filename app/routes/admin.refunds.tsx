@@ -119,6 +119,7 @@ const FILTERS: { status: RefundStatus; label: string }[] = [
   { status: RefundStatus.Declined, label: "Declined" },
 ];
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function AdminRefunds({ loaderData }: Route.ComponentProps) {
   const { status, refundRequests } = loaderData;
   const [, setSearchParams] = useSearchParams();
@@ -230,6 +231,7 @@ function Figures({ refundRequest }: { refundRequest: RefundRequestForReview }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function RefundRequestCard({
   refundRequest,
 }: {

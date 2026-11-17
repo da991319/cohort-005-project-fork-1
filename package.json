@@ -23,11 +23,14 @@
     "seed-wayfinder-issues": "bash scripts/seed-wayfinder-issues.sh",
     "db:migrate": "drizzle-kit migrate",
     "loc": "git ls-files | grep -vE '(lock|.db|_snapshot.json)' | xargs wc -l",
-    "lint:oxlint": "oxlint -c .oxlintrc.json",
+    "lint:oxlint": "oxlint -c .oxlintrc.json --report-unused-disable-directives-severity=error",
+    "lint:exemptions": "node scripts/check-lint-exemptions.js",
+    "lint:modules": "node scripts/check-modules.js",
+    "lint:tokens": "git ls-files -z | xargs -0 node scripts/check-file-tokens.js",
     "lint:boundaries": "depcruise app --cache node_modules/.cache/dependency-cruiser",
     "format": "biome format --write . && prettier --write \"**/*.md\"",
     "format:check": "biome format . && prettier --check \"**/*.md\"",
-    "check": "npm run format:check && npm run lint:oxlint && npm run typecheck && npm run lint:boundaries && npm run test",
+    "check": "npm run format:check && npm run lint:oxlint && npm run lint:exemptions && npm run lint:modules && npm run lint:tokens && npm run typecheck && npm run lint:boundaries && npm run test",
     "prepare": "husky"
   },
   "dependencies": {
@@ -103,7 +106,10 @@
       "biome format --no-errors-on-unmatched --files-ignore-unknown=true",
       "node scripts/check-file-tokens.js"
     ],
-    "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}": "oxlint -c .oxlintrc.json --no-error-on-unmatched-pattern",
+    "*.{js,jsx,ts,tsx,mjs,cjs,mts,cts}": [
+      "oxlint -c .oxlintrc.json --report-unused-disable-directives-severity=error --no-error-on-unmatched-pattern",
+      "node scripts/check-lint-exemptions.js"
+    ],
     "*.md": "prettier --check"
   }
 }

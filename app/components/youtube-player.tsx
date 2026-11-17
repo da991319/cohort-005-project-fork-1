@@ -63,6 +63,7 @@ function loadYouTubeAPI(): Promise<void> {
   return apiLoadPromise;
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function YouTubePlayer({
   videoUrl,
   lessonId,
@@ -130,6 +131,7 @@ export function YouTubePlayer({
     }
   }, []);
 
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   useEffect(() => {
     if (!videoId || !containerRef.current) return;
 

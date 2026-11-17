@@ -71,6 +71,7 @@ function getCourseLessonIds(courseId: number): number[] {
   return courseLessons.map((l) => l.id);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function calculateProgress(
   userId: number,
   courseId: number,

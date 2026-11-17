@@ -96,6 +96,7 @@ export async function action({ request, url }: Route.ActionArgs) {
   });
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function SignUp() {
   const actionData = useActionData<typeof action>();
   const navigation = useNavigation();

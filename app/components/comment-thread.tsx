@@ -37,6 +37,7 @@ function AuthorBadge({ label }: { label: string }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function CommentForm({
   intent,
   parentId,
@@ -72,8 +73,7 @@ function CommentForm({
       if (intent === "create-comment") setBody("");
       onDone?.();
     }
-    // onDone is recreated each render by callers; depending on it would loop.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps -- onDone is recreated each render by callers; depending on it would loop
   }, [fetcher.state, fetcher.data, intent]);
 
   const tooLong = body.length > MAX_COMMENT_LENGTH;
@@ -95,7 +95,6 @@ function CommentForm({
         onChange={(event) => setBody(event.target.value)}
         placeholder={placeholder}
         rows={4}
-        // oxlint-disable-next-line jsx-a11y/no-autofocus -- focus moves to the form the person just opened
         autoFocus={autoFocus}
         aria-label={placeholder}
       />
@@ -132,6 +131,7 @@ function CommentForm({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function CommentActions({
   comment,
   canEdit,
@@ -195,6 +195,7 @@ function CommentActions({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function CommentItem({
   comment,
   currentUserId,
@@ -350,6 +351,7 @@ function Replies({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function CommentThread({
   comments,
   currentUserId,

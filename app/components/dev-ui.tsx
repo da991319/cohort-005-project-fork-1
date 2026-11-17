@@ -41,6 +41,7 @@ function RoleBadge({ role }: { role: string }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function DevUI({
   users,
   currentUser,

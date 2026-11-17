@@ -53,6 +53,7 @@ function getQuizByLessonId(lessonId: number) {
   return db.select().from(quizzes).where(eq(quizzes.lessonId, lessonId)).get();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function updateLesson(
   id: number,
   title: string | null,
@@ -153,6 +154,7 @@ export async function action({ params, request }: Route.ActionArgs) {
   throw data("Invalid action.", { status: 400 });
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function InstructorLessonEditor({
   loaderData,
 }: Route.ComponentProps) {

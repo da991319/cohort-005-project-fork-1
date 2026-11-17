@@ -152,6 +152,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function InstructorDashboard({
   loaderData,
 }: Route.ComponentProps) {
@@ -199,6 +200,7 @@ export default function InstructorDashboard({
         </div>
       ) : (
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
           {courses.map((course) => (
             <Card
               key={course.id}

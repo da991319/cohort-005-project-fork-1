@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { useState, useRef, useEffect } from "react";
 import { Link, useFetcher } from "react-router";
 import { toast } from "sonner";
@@ -64,6 +65,7 @@ function getUserById(id: number) {
   return db.select().from(users).where(eq(users.id, id)).get();
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getCourseWithDetails(id: number) {
   const course = db
     .select({
@@ -262,6 +264,7 @@ function getLessonsByModule(moduleId: number) {
     .all();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function createLesson(
   moduleId: number,
   title: string,
@@ -397,6 +400,7 @@ function getCourseLessonIds(courseId: number): number[] {
   return courseLessons.map((l) => l.id);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function calculateProgress(
   userId: number,
   courseId: number,
@@ -546,6 +550,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
   ];
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loader({ params, request }: Route.LoaderArgs) {
   const {
     course: { id: courseId },
@@ -615,6 +620,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   return { course, lessonCount, enrollmentCount, students, quizCount };
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function action({ params, request }: Route.ActionArgs) {
   const { course } = await coursePermissions.requireCapability(
     request,
@@ -802,6 +808,7 @@ export async function action({ params, request }: Route.ActionArgs) {
   throw data("Invalid action.", { status: 400 });
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function InlineEditableTitle({ value }: { value: string; courseId: number }) {
   const [isEditing, setIsEditing] = useState(false);
   const [editValue, setEditValue] = useState(value);
@@ -880,6 +887,7 @@ function InlineEditableTitle({ value }: { value: string; courseId: number }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function InlineEditableDescription({
   value,
 }: {
@@ -975,6 +983,7 @@ function InlineEditableDescription({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function InlineEditableModuleTitle({
   value,
   moduleId,
@@ -1049,6 +1058,7 @@ function InlineEditableModuleTitle({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function DeleteModuleButton({
   moduleId,
   moduleTitle,
@@ -1112,6 +1122,7 @@ function DeleteModuleButton({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function AddModuleForm() {
   const [isAdding, setIsAdding] = useState(false);
   const [title, setTitle] = useState("");
@@ -1197,6 +1208,7 @@ function AddModuleForm() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function InlineEditableLessonTitle({
   value,
   lessonId,
@@ -1271,6 +1283,7 @@ function InlineEditableLessonTitle({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function DeleteLessonButton({
   lessonId,
 }: {
@@ -1331,6 +1344,7 @@ function DeleteLessonButton({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function AddLessonForm({ moduleId }: { moduleId: number }) {
   const [isAdding, setIsAdding] = useState(false);
   const [title, setTitle] = useState("");
@@ -1421,6 +1435,7 @@ function AddLessonForm({ moduleId }: { moduleId: number }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function InstructorCourseEditor({
   loaderData,
 }: Route.ComponentProps) {
@@ -1511,6 +1526,7 @@ export default function InstructorCourseEditor({
     );
   }
 
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   function handleDragEnd(result: DropResult) {
     if (!result.destination) return;
     if (
@@ -1663,18 +1679,21 @@ export default function InstructorCourseEditor({
           ) : (
             <DragDropContext onDragEnd={handleDragEnd}>
               <Droppable droppableId="modules" type="module">
+                {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                 {(provided) => (
                   <div
                     className="space-y-4"
                     ref={provided.innerRef}
                     {...provided.droppableProps}
                   >
+                    {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                     {course.modules.map((mod, index) => (
                       <Draggable
                         key={mod.id}
                         draggableId={String(mod.id)}
                         index={index}
                       >
+                        {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                         {(provided, snapshot) => (
                           <div
                             ref={provided.innerRef}
@@ -1725,6 +1744,7 @@ export default function InstructorCourseEditor({
                                     droppableId={`lessons-${mod.id}`}
                                     type="lesson"
                                   >
+                                    {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                                     {(lessonDropProvided) => (
                                       <ul
                                         className="space-y-1"
@@ -1732,12 +1752,14 @@ export default function InstructorCourseEditor({
                                         {...lessonDropProvided.droppableProps}
                                       >
                                         {mod.lessons.map(
+                                          // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
                                           (lesson, lessonIndex) => (
                                             <Draggable
                                               key={lesson.id}
                                               draggableId={`lesson-${lesson.id}`}
                                               index={lessonIndex}
                                             >
+                                              {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                                               {(
                                                 lessonProvided,
                                                 lessonSnapshot
@@ -2055,6 +2077,7 @@ export default function InstructorCourseEditor({
                       </tr>
                     </thead>
                     <tbody>
+                      {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                       {students.map((student) => {
                         const enrolledDate = new Date(
                           student.enrolledAt

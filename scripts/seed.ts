@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import Database from "better-sqlite3";
 import { eq, gte, isNotNull, isNull, sql, type SQL } from "drizzle-orm";
 import { drizzle } from "drizzle-orm/better-sqlite3";
@@ -68,6 +69,7 @@ function makeRandom(seed: number): () => number {
 
 // ─── Seed Data ───
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 async function seed() {
   console.log("Seeding database...");
 
@@ -2106,6 +2108,7 @@ This course is still in draft while the cluster examples are rewritten against t
   // ─── Quiz Attempts ───
 
   // Helper to record a quiz attempt with answers
+  // oxlint-disable-next-line max-params -- legacy: predates this rule
   function recordQuizAttempt(
     userId: number,
     quizId: number,
@@ -2202,6 +2205,7 @@ This course is still in draft while the cluster examples are rewritten against t
 
   const watchEventRows: WatchEventRow[] = [];
 
+  // oxlint-disable-next-line max-params -- legacy: predates this rule
   function addWatchEvent(
     userId: number,
     lessonId: number,
@@ -2221,6 +2225,7 @@ This course is still in draft while the cluster examples are rewritten against t
   // One watch session: `play`, a `progress` heartbeat every 10 seconds of
   // playback, then `ended` if they reached the end or `pause` if they stopped
   // short. Clock time advances with playback position, as it does in real life.
+  // oxlint-disable-next-line max-params -- legacy: predates this rule
   function addWatchSession(
     userId: number,
     lessonId: number,
@@ -2559,6 +2564,7 @@ This course is still in draft while the cluster examples are rewritten against t
   // Walks a student through a course as far as they got, leaving the lesson
   // after their last completed one in progress. Returns the number of rows
   // written.
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   function generateProgress(
     userId: number,
     target: SellableCourse,
@@ -2653,6 +2659,7 @@ This course is still in draft while the cluster examples are rewritten against t
   // redemption states: one team most of the way through its seats, one that has
   // bought and redeemed nothing yet.
 
+  // oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
   function createTeamPurchase(
     adminEmail: string,
     course: typeof course1,

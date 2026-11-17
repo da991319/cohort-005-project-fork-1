@@ -45,6 +45,7 @@ function getUserById(id: number) {
   return db.select().from(users).where(eq(users.id, id)).get();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function updateUser(
   id: number,
   name: string,
@@ -115,6 +116,7 @@ export async function action({ request }: Route.ActionArgs) {
   throw data("Invalid action.", { status: 400 });
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function EditableUserRow({
   user,
 }: {
@@ -357,6 +359,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function AdminUsers({ loaderData }: Route.ComponentProps) {
   const { users } = loaderData;
 

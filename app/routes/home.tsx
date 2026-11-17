@@ -38,6 +38,7 @@ function getAllCategories() {
   return db.select().from(categories).orderBy(categories.name).all();
 }
 
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 function buildCourseQuery(
   search: string | null,
   category: string | null,
@@ -162,6 +163,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   };
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function Home({ loaderData }: Route.ComponentProps) {
   const {
     featuredCourses,

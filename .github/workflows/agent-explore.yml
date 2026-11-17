@@ -162,6 +162,14 @@ jobs:
         if: steps.batch.outputs.numbers != '[]'
         run: npm install -g @github/copilot
 
+      - name: Install agent-browser
+        # The agent drives the app with it. Installed here, so the agent does
+        # not spend its first minutes installing it. See docs/agents/agent-browser.md.
+        if: steps.batch.outputs.numbers != '[]'
+        run: |
+          npm install -g agent-browser
+          agent-browser install
+
       - name: Explore
         if: steps.batch.outputs.numbers != '[]'
         env:

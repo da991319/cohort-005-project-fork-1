@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { Link, useFetcher, redirect, useSearchParams } from "react-router";
 import { useState, useEffect } from "react";
 import { toast } from "sonner";
@@ -45,6 +46,7 @@ function getCourseBySlug(slug: string) {
   return db.select().from(courses).where(eq(courses.slug, slug)).get();
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getCourseWithDetails(id: number) {
   const course = db
     .select({
@@ -130,6 +132,7 @@ function getEnrollmentCountForCourse(courseId: number) {
   return result?.count ?? 0;
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function createPurchase(
   userId: number,
   courseId: number,
@@ -172,6 +175,7 @@ function getOrCreateTeamForUser(userId: number) {
   return team;
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function generateCoupons(
   teamId: number,
   courseId: number,
@@ -195,6 +199,7 @@ function generateCoupons(
   return created;
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function createTeamPurchase(
   userId: number,
   courseId: number,
@@ -228,6 +233,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
   ];
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loader({ params, request, url }: Route.LoaderArgs) {
   const slug = params.slug;
   const course = getCourseBySlug(slug);
@@ -339,6 +345,7 @@ export async function action({ params, request }: Route.ActionArgs) {
   throw redirect(`/team`);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function PurchaseConfirmation({
   loaderData,
 }: Route.ComponentProps) {

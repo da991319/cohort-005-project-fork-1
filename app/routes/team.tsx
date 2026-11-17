@@ -80,6 +80,7 @@ export function meta() {
   ];
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loader({ request }: Route.LoaderArgs) {
   const { id: currentUserId } = await people.requirePerson(request);
 
@@ -193,6 +194,7 @@ function CopyButton({ code }: { code: string }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function Team({ loaderData }: Route.ComponentProps) {
   const { courseStats, couponRows, teamLicences } = loaderData;
   const [courseFilter, setCourseFilter] = useState<number | "all">("all");
@@ -352,6 +354,7 @@ export default function Team({ loaderData }: Route.ComponentProps) {
 
 type TeamLicence = Route.ComponentProps["loaderData"]["teamLicences"][number];
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function TeamLicenceRow({ licence }: { licence: TeamLicence }) {
   const fetcher = useFetcher<{ errors?: Record<string, string> }>();
   const [isFormOpen, setIsFormOpen] = useState(false);

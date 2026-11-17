@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { useState, useEffect, useCallback } from "react";
 import { Link, useFetcher, useNavigate } from "react-router";
 import { toast } from "sonner";
@@ -119,6 +120,7 @@ type ThreadComment = {
   replies: ThreadComment[];
 };
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getCourseWithDetails(id: number) {
   const course = db
     .select({
@@ -365,6 +367,7 @@ function getCommentById(commentId: number) {
   return db.select().from(comments).where(eq(comments.id, commentId)).get();
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getLessonThread(lessonId: number): ThreadComment[] {
   const course = getCourseForLesson(lessonId);
   if (!course) return [];
@@ -480,6 +483,7 @@ type QuestionResult = {
   correctOptionId: number | null;
 };
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function computeResult(
   userId: number,
   quizId: number,
@@ -644,6 +648,7 @@ function flattenCourseLessons(course: {
   return flat;
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loader({ params, request }: Route.LoaderArgs) {
   // Not found covers an unknown course, a malformed lesson id, and a lesson
   // from another course.
@@ -723,6 +728,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
       if (lesson.videoUrl) {
         lastWatchPosition = getLastWatchPosition(currentUserId, lessonId);
         const videoDurationSeconds = (lesson.durationMinutes ?? 0) * 60;
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (videoDurationSeconds > 0) {
           watchProgress = calculateWatchProgress(
             currentUserId,
@@ -833,6 +839,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   };
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function action({ params, request }: Route.ActionArgs) {
   const formData = await request.formData();
   const intent = formData.get("intent");
@@ -862,6 +869,7 @@ export async function action({ params, request }: Route.ActionArgs) {
     try {
       if (intent === "create-comment") {
         const parsed = parseFormData(formData, createCommentSchema);
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (!parsed.success) {
           return { ok: false, error: "Enter a comment before posting." };
         }
@@ -874,18 +882,21 @@ export async function action({ params, request }: Route.ActionArgs) {
           new Date(),
           await defaultNotifications()
         );
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (!created.ok) return created;
         return { ok: true };
       }
 
       if (intent === "edit-comment") {
         const parsed = parseFormData(formData, editCommentSchema);
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (!parsed.success) {
           return { ok: false, error: "Enter a comment before saving." };
         }
         // Scope the id to this lesson so a comment elsewhere can't be reached
         // by posting its id to this route.
         const existing = getCommentById(parsed.data.commentId);
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (!existing || existing.lessonId !== lessonId) {
           throw data("Comment not found", { status: 404 });
         }
@@ -896,6 +907,7 @@ export async function action({ params, request }: Route.ActionArgs) {
           parsed.data.body,
           new Date()
         );
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (!edited.ok) return edited;
         return { ok: true };
       }
@@ -981,6 +993,7 @@ export async function action({ params, request }: Route.ActionArgs) {
       if (key.startsWith("question-")) {
         const questionId = Number(key.replace("question-", ""));
         const optionId = Number(value);
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (!isNaN(questionId) && !isNaN(optionId)) {
           selectedAnswers[questionId] = optionId;
         }
@@ -1035,6 +1048,7 @@ export default function LessonViewer({ loaderData }: Route.ComponentProps) {
   return <FullLesson data={loaderData} />;
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function LockedLesson({
   data: { course, curriculum, module: mod, lesson, enrolled, lockedReason },
 }: {
@@ -1146,6 +1160,7 @@ function LessonBreadcrumb({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function FullLesson({
   data,
 }: {
@@ -1461,6 +1476,7 @@ function LessonNote({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function CurriculumSidebar({
   course,
   curriculum,
@@ -1515,6 +1531,7 @@ function CurriculumSidebar({
         </div>
 
         <nav className="flex-1 p-2">
+          {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
           {curriculum.map((mod) => {
             const isExpanded = expandedModules.has(mod.id);
 
@@ -1581,6 +1598,7 @@ function CurriculumSidebar({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function QuizSection({
   quiz,
   bestAttempt,

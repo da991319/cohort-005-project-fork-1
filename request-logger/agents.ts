@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 /**
  * agents.ts — the catalogue of coding agents the request-logger can proxy.
  *
@@ -1144,6 +1145,7 @@ function resolveCustomModel(
  * chose; everything else is borrowed from the closest matching catalogue
  * provider — see findCustomTemplate.
  */
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 function resolveCustomTarget(
   agent: AgentEntry,
   choice: AgentChoice,
@@ -1314,6 +1316,7 @@ function resolveCustomTarget(
  * statements instead (see withEnv). The caller reads `process.platform`
  * once and passes it in, the same way it already does for `port`.
  */
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function resolveChoice(
   choice: AgentChoice,
   options: { port: number; platform: NodeJS.Platform }

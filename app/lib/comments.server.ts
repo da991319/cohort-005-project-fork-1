@@ -38,6 +38,7 @@ export type CreateCommentResult =
  * to someone else's question sends its author the Discussion Reply
  * Notification; a failure to send it is logged and never fails the post.
  */
+// oxlint-disable-next-line max-lines-per-function, max-params -- legacy: predates this rule
 export async function createComment(
   db: Db,
   authorId: number,
@@ -100,6 +101,7 @@ export async function createComment(
   return { ok: true, comment };
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 async function notifyQuestionAuthor(
   db: Db,
   question: Comment,
@@ -207,6 +209,7 @@ export type DeleteCommentResult =
  * Discussion Replies readable, and their Notifications in place. A failure to
  * archive is logged and never fails the delete.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export async function deleteComment(
   db: Db,
   commentId: number,
@@ -244,6 +247,7 @@ export type EditCommentResult = { ok: true; comment: Comment } | CommentFailure;
  * Changes the body of the author's own comment. Notifications are a snapshot
  * of when they were sent, so an edit changes none of them.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export function editComment(
   db: Db,
   commentId: number,

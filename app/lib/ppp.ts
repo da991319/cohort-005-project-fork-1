@@ -84,6 +84,7 @@ export function getCountryTierInfo(countryCode: string | null) {
  * Callers: playback (the buyer's Individual Purchase) and Seat claims (the Team
  * Licence the Seat belongs to). See ADR-0013.
  */
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 export function checkCountryLock(
   coursePrice: number,
   coursePppEnabled: boolean,
