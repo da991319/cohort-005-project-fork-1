@@ -112,6 +112,7 @@ export type KnockConfig = {
   feedChannelId: string;
 };
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function knockNotifications(config: KnockConfig): Notifications {
   const knock = new Knock({ apiKey: config.secretKey });
 

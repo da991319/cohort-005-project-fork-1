@@ -21,6 +21,7 @@ import {
 import { data, isRouteErrorResponse } from "react-router";
 import { formatDuration } from "~/lib/utils";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getCourseWithDetails(id: number) {
   const course = db
     .select({
@@ -162,6 +163,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function InstructorModulePreview({
   loaderData,
 }: Route.ComponentProps) {
@@ -274,6 +276,7 @@ export default function InstructorModulePreview({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
   let title = "Something went wrong";
   let message =

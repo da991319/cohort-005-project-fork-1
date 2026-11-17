@@ -20,6 +20,15 @@ a type and you do not check it again. Coerce numbers through the schema, not
 `Number()`: `Number("")` is `0`, and an empty `lessonId` once opened lesson 0
 for every learner.
 
+## Normalise once, and share it with the client
+
+When the server trims, cleans or limits input before saving it, that
+normalisation is one plain function (not in a `.server` file) that the schema,
+the service and any client-side "is this saved?" or "is this valid?" check all
+import. A client that re-implements it drifts: the note editor compared the
+untrimmed draft with the trimmed saved note, and showed "Unsaved changes"
+forever after a save.
+
 ## Check permission in the action, not only the loader
 
 A loader guard does not protect an action. They are separate requests. For a
@@ -44,7 +53,9 @@ change to how the module stores its data leaves its tests alone.
 
 ## Keep files under 5000 tokens
 
-Keep every file under 5000 tokens.
+Keep every file under 5000 tokens. The files on the `BASELINE` list in
+`scripts/check-file-tokens.js` are already over; each is split in its own
+pull request, so a change that only touches one does not split it.
 
 ## Wrap related writes in a transaction
 

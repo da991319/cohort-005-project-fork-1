@@ -132,6 +132,7 @@ function forwardHeaders(
   return out;
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function handle(
   request: http.IncomingMessage,
   response: http.ServerResponse,
@@ -147,6 +148,7 @@ function handle(
 
   const bodyChunks: Buffer[] = [];
   request.on("data", (chunk: Buffer) => bodyChunks.push(chunk));
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   request.on("end", () => {
     const body = Buffer.concat(bodyChunks);
     const timestamp = new Date().toISOString();
@@ -326,6 +328,7 @@ export function trackBurst(
 /** Module-level on purpose: one guard for the whole process, the same as LOG_DIR. */
 let burstState: BurstState | null = null;
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function writeCapture(c: Capture): void {
   const label = c.target.agentLabel;
 
@@ -485,6 +488,7 @@ async function ask(offerToRemember: boolean): Promise<AgentChoice> {
   return choice;
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 async function main(): Promise<void> {
   const force = process.argv.includes("--force");
 

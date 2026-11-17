@@ -219,6 +219,7 @@ async function askDiscoveredModel(baseUrl: string): Promise<string> {
   return selected.kind === "model" ? selected.id : askModelIdManually();
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function askChoice(options: AskOptions): Promise<WizardAnswer> {
   intro(styleText("bold", " request-logger "));
 

@@ -9,6 +9,7 @@ import { Card, CardContent } from "~/components/ui/card";
 import { PartyPopper, MessageCircle, PlayCircle } from "lucide-react";
 import { data } from "react-router";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getCourseWithDetails(id: number) {
   const course = db
     .select({
@@ -104,6 +105,7 @@ export async function loader({ params, request }: Route.LoaderArgs) {
   };
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function Welcome({ loaderData }: Route.ComponentProps) {
   const { course, discordInviteUrl } = loaderData;
 

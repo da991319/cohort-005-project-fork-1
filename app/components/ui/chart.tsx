@@ -114,6 +114,7 @@ const ChartTooltipContent = React.forwardRef<
       labelKey?: string;
     }
 >(
+  // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
   (
     {
       active,
@@ -188,6 +189,7 @@ const ChartTooltipContent = React.forwardRef<
         <div className="grid gap-1.5">
           {payload
             .filter((item) => item.type !== "none")
+            // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
             .map((item, index) => {
               const key = `${nameKey || item.name || item.dataKey || "value"}`;
               const itemConfig = getPayloadConfigFromPayload(config, item, key);

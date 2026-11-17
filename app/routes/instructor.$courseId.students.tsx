@@ -109,6 +109,7 @@ function getCourseLessonIds(courseId: number): number[] {
   return courseLessons.map((l) => l.id);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function calculateProgress(
   userId: number,
   courseId: number,
@@ -179,6 +180,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
   ];
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loader({ params, request }: Route.LoaderArgs) {
   const { course } = await coursePermissions.requireCapability(
     request,
@@ -306,6 +308,7 @@ function quizScoreBadge(score: number | null, passed: boolean | null) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function InstructorStudentRoster({
   loaderData,
 }: Route.ComponentProps) {
@@ -391,6 +394,7 @@ export default function InstructorStudentRoster({
                   </tr>
                 </thead>
                 <tbody>
+                  {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
                   {students.map((student) => {
                     const enrolledDate = new Date(
                       student.enrolledAt

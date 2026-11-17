@@ -24,6 +24,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   };
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function Saved({ loaderData }: Route.ComponentProps) {
   const { savedBookmarks, savedNotes } = loaderData;
 

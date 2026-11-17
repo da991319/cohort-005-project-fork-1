@@ -29,6 +29,7 @@ import {
 import { data, isRouteErrorResponse } from "react-router";
 import { formatDuration } from "~/lib/utils";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function getCourseWithDetails(id: number) {
   const course = db
     .select({
@@ -135,6 +136,7 @@ export function meta({ loaderData }: Route.MetaArgs) {
   return [{ title: `${moduleTitle} — ${courseTitle} — Cadence` }];
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loader({ params, request }: Route.LoaderArgs) {
   // Public page: signed-out visitors and people without an Enrollment still
   // see it. Not found covers an unknown course, a malformed module id and a
@@ -231,6 +233,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function ModuleDetail({ loaderData }: Route.ComponentProps) {
   const {
     course,
@@ -320,6 +323,7 @@ export default function ModuleDetail({ loaderData }: Route.ComponentProps) {
         </p>
       ) : (
         <div className="space-y-1">
+          {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
           {mod.lessons.map((lesson) => {
             const status = lessonProgressMap[lesson.id];
             const isCompleted = status === LessonProgressStatus.Completed;

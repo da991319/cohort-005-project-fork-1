@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { describe, it, expect, beforeEach } from "vitest";
 import { eq } from "drizzle-orm";
 import { createTestDb, seedBaseData, type TestDb } from "~/test/setup";
@@ -92,6 +93,7 @@ function addLesson(moduleId: number, title: string, position: number) {
     .get();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function buy(
   userId: number,
   courseId: number,
@@ -111,6 +113,7 @@ function buy(
     .get();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function buySeats(
   buyerId: number,
   courseId: number,
@@ -153,6 +156,7 @@ function claimSeat(
   enroll(userId, seat.courseId, daysBack);
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function rate(userId: number, courseId: number, rating: number, daysBack = 2) {
   db.insert(schema.courseRatings)
     .values({
@@ -200,6 +204,7 @@ function addQuiz(lessonId: number, title: string, passingScore: number) {
     .get();
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 function attempt(
   userId: number,
   quizId: number,

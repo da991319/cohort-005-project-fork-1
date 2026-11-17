@@ -12,6 +12,32 @@ npm install -g agent-browser
 agent-browser install
 ```
 
+The factory workflows (`.github/workflows/agent-*.yml`) install it before the
+agent starts, so a factory run can skip this step.
+
+## Signing in as a Student
+
+Most pages need a user. Pick one the way the DevUI panel does, by posting to
+`/api/switch-user`. In the seeded database, user 5 (Emma Wilson) is a
+Student enrolled in `introduction-to-typescript`, whose first lesson is 1:
+
+```bash
+agent-browser open http://localhost:5173/
+agent-browser eval 'fetch("/api/switch-user", { method: "POST", body: new URLSearchParams({ userId: "5" }) }).then((r) => r.status)'
+agent-browser open http://localhost:5173/courses/introduction-to-typescript/lessons/1
+```
+
+Users 1–4 are the admin and three instructors. For any other combination of
+user and course, query `data.db` for it rather than guessing.
+
+## A "before" screenshot
+
+`sh scripts/serve-base.sh` serves `origin/main` on port 5174, from a
+throwaway worktree, beside your own dev server. Take the "before" there and the
+"after" on 5173. Run it in the background and stop it when you are done; it
+removes its worktree on exit. Pass another ref and port as arguments:
+`sh scripts/serve-base.sh <ref> <port>`.
+
 ## Asking your own question
 
 Start the app with `npm run dev` first. The examples below use

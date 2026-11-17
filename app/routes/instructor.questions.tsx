@@ -174,6 +174,7 @@ export async function action({ request }: Route.ActionArgs) {
 
 type Question = Awaited<ReturnType<typeof loader>>["questions"][number];
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function QuestionCard({ question }: { question: Question }) {
   const fetcher = useFetcher<{ ok?: boolean; error?: string }>();
   const [body, setBody] = useState("");

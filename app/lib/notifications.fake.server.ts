@@ -26,6 +26,7 @@ export type FakeNotifications = Notifications & {
   failWith(error: Error): void;
 };
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function fakeNotifications(): FakeNotifications {
   let failure: Error | null = null;
   const sent: SentNotification[] = [];

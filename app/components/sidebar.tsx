@@ -121,6 +121,7 @@ function isVisible(item: NavItem, role: UserRole | null): boolean {
   return item.roles.includes(role);
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function Sidebar({
   currentUser,
   recentCourses = [],

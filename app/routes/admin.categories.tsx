@@ -1,3 +1,4 @@
+/* oxlint-disable max-lines -- legacy: predates this rule */
 import { useState, useRef, useEffect } from "react";
 import { useFetcher } from "react-router";
 import { toast } from "sonner";
@@ -137,6 +138,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   return { categories };
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function action({ request }: Route.ActionArgs) {
   await people.requirePlatformAdmin(request);
 
@@ -206,6 +208,7 @@ export async function action({ request }: Route.ActionArgs) {
   throw data("Invalid action.", { status: 400 });
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function CreateCategoryRow({ onClose }: { onClose: () => void }) {
   const [name, setName] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -224,9 +227,7 @@ function CreateCategoryRow({ onClose }: { onClose: () => void }) {
     if (fetcher.state === "idle" && fetcher.data?.error) {
       toast.error(fetcher.data.error);
     }
-    // Run once per fetcher result. onClose is a new function on every parent
-    // render, and re-running on it would show the toast again.
-    // oxlint-disable-next-line react/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps -- run once per fetcher result; onClose is new on every parent render and would re-show the toast
   }, [fetcher.state, fetcher.data]);
 
   function handleSave() {
@@ -288,6 +289,7 @@ function CreateCategoryRow({ onClose }: { onClose: () => void }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function CategoryRow({
   category,
 }: {
@@ -503,6 +505,7 @@ export function HydrateFallback() {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function AdminCategories({ loaderData }: Route.ComponentProps) {
   const { categories } = loaderData;
   const [isAdding, setIsAdding] = useState(false);

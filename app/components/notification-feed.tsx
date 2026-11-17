@@ -80,7 +80,7 @@ export function NotificationFeedProvider({
     // token on every revalidation; reconnecting on each would churn the socket.
     // Instead the feed fetches a fresh token itself just before the old one
     // expires (fetchFeedToken).
-    // oxlint-disable-next-line react/exhaustive-deps
+    // oxlint-disable-next-line react/exhaustive-deps -- re-open only when the person changes, as above
   }, [userId]);
 
   return <FeedContext.Provider value={feed}>{children}</FeedContext.Provider>;
@@ -171,6 +171,7 @@ function NotificationSettingsLink({ onClick }: { onClick: () => void }) {
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function NotificationPopover({
   feed,
   state,
@@ -282,6 +283,7 @@ function LoadMoreSentinel({
   );
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function NotificationRow({
   notification,
   onOpen,
@@ -354,6 +356,7 @@ function NotificationRow({
  * is the click target; leave it out (or undefined) for a row with nowhere to
  * go, and clicking it only marks it read.
  */
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 function describeNotification(notification: FeedNotification): {
   title: string;
   body: string;

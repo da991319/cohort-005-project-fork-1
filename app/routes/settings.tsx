@@ -93,6 +93,7 @@ export async function loader({ request }: Route.LoaderArgs) {
   };
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function action({ request }: Route.ActionArgs) {
   const { id: currentUserId } = await people.requirePerson(request);
 
@@ -155,6 +156,7 @@ export async function action({ request }: Route.ActionArgs) {
   return { success: true };
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export default function Settings({ loaderData }: Route.ComponentProps) {
   const {
     user,

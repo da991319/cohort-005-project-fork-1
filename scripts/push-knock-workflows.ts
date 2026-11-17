@@ -75,6 +75,7 @@ if (promoteFlag !== -1 && !promoteTo) {
   process.exit(1);
 }
 
+// oxlint-disable-next-line max-params -- legacy: predates this rule
 async function mapi(
   method: "GET" | "PUT",
   pathname: string,
