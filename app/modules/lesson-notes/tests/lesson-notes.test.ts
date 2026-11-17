@@ -21,6 +21,12 @@ describe("describeNoteDraft", () => {
     expect(state.canSave).toBe(false);
   });
 
+  it("treats trailing whitespace as already saved, since saving trims it", () => {
+    const state = describeNoteDraft("same \n", "same");
+    expect(state.unsaved).toBe(false);
+    expect(state.canSave).toBe(false);
+  });
+
   it("cannot save whitespace only", () => {
     const state = describeNoteDraft("   \n", "old");
     expect(state.empty).toBe(true);

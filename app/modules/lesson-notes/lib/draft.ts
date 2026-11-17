@@ -18,8 +18,10 @@ export function describeNoteDraft(
   savedBody: string | null
 ): NoteDraftState {
   const tooLong = draft.length > MAX_NOTE_LENGTH;
-  const empty = draft.trim().length === 0;
-  const unsaved = draft !== (savedBody ?? "");
+  const trimmed = draft.trim();
+  const empty = trimmed.length === 0;
+  // Saving trims the body, so compare what would be stored, not the raw box.
+  const unsaved = trimmed !== (savedBody ?? "");
 
   return {
     length: draft.length,
