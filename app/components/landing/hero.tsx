@@ -2,6 +2,7 @@ import { Link } from "react-router";
 import { ArrowRight, CheckCircle2 } from "lucide-react";
 import { Button } from "~/components/ui/button";
 import { CourseImage } from "~/components/course-image";
+import { countOf } from "~/lib/utils";
 import type { CatalogueStats, FeaturedCourse } from "./types";
 
 const SELLING_POINTS = [
@@ -26,8 +27,9 @@ export function LandingHero({
         <div>
           <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
             <span className="size-1.5 rounded-full bg-emerald-500" />
-            {stats.courses} courses · {stats.lessons} lessons ·{" "}
-            {stats.instructors} instructors
+            {countOf(stats.courses, "course")} ·{" "}
+            {countOf(stats.lessons, "lesson")} ·{" "}
+            {countOf(stats.instructors, "instructor")}
           </p>
           <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
             Learn to code,
@@ -98,7 +100,7 @@ function CoverStack({ courses }: { courses: FeaturedCourse[] }) {
           <div className="p-4">
             <p className="truncate text-sm font-semibold">{course.title}</p>
             <p className="mt-1 text-xs text-muted-foreground">
-              {course.lessonCount} lessons · {course.instructorName}
+              {countOf(course.lessonCount, "lesson")} · {course.instructorName}
             </p>
           </div>
         </div>
