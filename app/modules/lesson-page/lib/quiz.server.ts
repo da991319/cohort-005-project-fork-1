@@ -62,6 +62,7 @@ type QuestionResult = {
   correctOptionId: number | null;
 };
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function computeResult(
   userId: number,
   quizId: number,

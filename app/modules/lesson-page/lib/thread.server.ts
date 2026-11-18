@@ -49,6 +49,7 @@ export function getCommentById(commentId: number) {
   return db.select().from(comments).where(eq(comments.id, commentId)).get();
 }
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function getLessonThread(lessonId: number): ThreadComment[] {
   const course = getCourseForLesson(lessonId);
   if (!course) return [];
