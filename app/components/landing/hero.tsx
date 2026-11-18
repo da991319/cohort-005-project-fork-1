@@ -25,12 +25,7 @@ export function LandingHero({
       <div className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-br from-transparent via-transparent to-primary/5" />
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.1fr_1fr] lg:py-28">
         <div>
-          <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
-            <span className="size-1.5 rounded-full bg-emerald-500" />
-            {countOf(stats.courses, "course")} ·{" "}
-            {countOf(stats.lessons, "lesson")} ·{" "}
-            {countOf(stats.instructors, "instructor")}
-          </p>
+          <CatalogueBadge stats={stats} />
           <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
             Learn to code,
             <br />
@@ -53,6 +48,18 @@ export function LandingHero({
         <CoverStack courses={featuredCourses} />
       </div>
     </section>
+  );
+}
+
+function CatalogueBadge({ stats }: { stats: CatalogueStats }) {
+  if (stats.courses === 0) return null;
+
+  return (
+    <p className="mb-6 inline-flex items-center gap-2 rounded-full border border-border bg-muted/50 px-3 py-1 text-xs font-medium text-muted-foreground">
+      <span className="size-1.5 rounded-full bg-emerald-500" />
+      {countOf(stats.courses, "course")} · {countOf(stats.lessons, "lesson")} ·{" "}
+      {countOf(stats.instructors, "instructor")}
+    </p>
   );
 }
 

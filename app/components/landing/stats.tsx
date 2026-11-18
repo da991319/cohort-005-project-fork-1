@@ -3,6 +3,8 @@ import { BookOpen, GraduationCap, Layers, Users } from "lucide-react";
 import type { CatalogueStats } from "./types";
 
 export function LandingStats({ stats }: { stats: CatalogueStats }) {
+  if (stats.courses === 0) return null;
+
   const items: { icon: LucideIcon; value: number; label: string }[] = [
     { icon: BookOpen, value: stats.courses, label: "Published courses" },
     { icon: Layers, value: stats.lessons, label: "Lessons to work through" },
