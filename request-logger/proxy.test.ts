@@ -6,12 +6,10 @@ import {
   BURST_THRESHOLD,
   BURST_WINDOW_MS,
   burstKey,
-  rejectUpgrade,
   trackBurst,
-  upstreamConnection,
-  upstreamPathPrefix,
   type BurstState,
-} from "./proxy";
+} from "./burst";
+import { rejectUpgrade, upstreamConnection, upstreamPathPrefix } from "./proxy";
 
 const PORT = { port: 8787, platform: "linux" as NodeJS.Platform };
 
