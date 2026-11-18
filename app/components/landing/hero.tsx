@@ -85,7 +85,7 @@ function CoverStack({ courses }: { courses: FeaturedCourse[] }) {
 
   return (
     <div className="relative hidden h-[460px] lg:block" aria-hidden="true">
-      {courses.map((course, index) => (
+      {courses.slice(0, STACK_POSITIONS.length).map((course, index) => (
         <div
           key={course.id}
           className={`absolute w-64 overflow-hidden rounded-xl border border-border bg-card shadow-xl ${STACK_POSITIONS[index]}`}
