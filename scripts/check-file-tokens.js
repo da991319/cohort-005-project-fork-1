@@ -23,7 +23,6 @@ const BASELINE = [
   "app/lib/refunds.server.ts",
   "app/modules/instructor-analytics/lib/instructor-analytics.ts",
   "app/modules/instructor-analytics/tests/instructor-analytics.test.ts",
-  "app/routes/courses.$slug.lessons.$lessonId.tsx",
   "app/routes/courses.$slug.tsx",
   "app/routes/instructor.$courseId.lessons.$lessonId.quiz.tsx",
   "app/routes/instructor.$courseId.tsx",

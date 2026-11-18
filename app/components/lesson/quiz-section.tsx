@@ -11,6 +11,7 @@ import {
   RotateCcw,
 } from "lucide-react";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function QuizSection({
   quiz,
   bestAttempt,

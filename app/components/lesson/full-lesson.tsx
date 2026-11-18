@@ -22,6 +22,7 @@ import { CurriculumSidebar } from "./curriculum-sidebar";
 import { QuizSection } from "./quiz-section";
 import { useAutoplay } from "./use-autoplay";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function FullLesson({
   data,
 }: {

@@ -7,6 +7,7 @@ import type { LessonPageData } from "~/modules/lesson-page/index.server";
 import { LessonBreadcrumb } from "./lesson-breadcrumb";
 import { CurriculumSidebar } from "./curriculum-sidebar";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function LockedLesson({
   data: { course, curriculum, module: mod, lesson, enrolled, lockedReason },
 }: {

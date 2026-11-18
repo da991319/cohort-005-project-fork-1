@@ -2,6 +2,7 @@ import { db } from "~/db";
 import { categories, courses, lessons, modules, users } from "~/db/schema";
 import { eq, or } from "drizzle-orm";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function getCourseWithDetails(id: number) {
   const course = db
     .select({

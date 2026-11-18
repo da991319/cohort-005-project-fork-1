@@ -4,6 +4,7 @@ import { CheckCircle2, ChevronDown, Circle, PlayCircle } from "lucide-react";
 import { cn } from "~/lib/utils";
 import { LessonProgressStatus } from "~/db/schema";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function CurriculumSidebar({
   course,
   curriculum,
@@ -58,6 +59,7 @@ export function CurriculumSidebar({
         </div>
 
         <nav className="flex-1 p-2">
+          {/* oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule */}
           {curriculum.map((mod) => {
             const isExpanded = expandedModules.has(mod.id);
 
