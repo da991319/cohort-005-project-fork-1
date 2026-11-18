@@ -9,7 +9,7 @@ import {
 } from "~/db/schema";
 import type { Db } from "./database";
 
-export const FEATURED_COURSE_LIMIT = 3;
+const FEATURED_COURSE_LIMIT = 3;
 
 const isPublished = eq(courses.status, CourseStatus.Published);
 

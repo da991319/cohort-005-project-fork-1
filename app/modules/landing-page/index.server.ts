@@ -11,12 +11,7 @@ export type LandingPageData = ReturnType<typeof loadLandingPage>;
  */
 export function createLandingPage(database: Db) {
   return {
-    /**
-     * The newest published courses, each with its lesson count, and totals
-     * for the published catalogue: courses, the categories and instructors
-     * they span, and their lessons. Drafts and archived courses count for
-     * nothing.
-     */
+    /** Drafts and archived courses count for nothing, in the stats too. */
     load() {
       return loadLandingPage(database);
     },
