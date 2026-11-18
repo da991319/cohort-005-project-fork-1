@@ -20,7 +20,7 @@ export function LandingHero({
   signedIn: boolean;
 }) {
   return (
-    <section className="relative overflow-hidden">
+    <section className="relative isolate overflow-hidden">
       <div className="pointer-events-none absolute inset-0 -z-10 bg-linear-to-br from-transparent via-transparent to-primary/5" />
       <div className="mx-auto grid max-w-6xl items-center gap-12 px-6 py-20 lg:grid-cols-[1.1fr_1fr] lg:py-28">
         <div>
