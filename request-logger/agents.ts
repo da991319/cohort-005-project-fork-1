@@ -1,7 +1,7 @@
 /**
- * agents.ts — the catalogue of coding agents the request-logger can proxy.
+ * agents.ts — the coding agents the request-logger can proxy.
  *
- * This module is the single source of truth for every per-agent fact:
+ * The catalogue in agent-catalogue.ts is the single source of truth for every per-agent fact:
  *  - which upstream host that agent's traffic must go to,
  *  - which renderer reads that wire format,
  *  - the exact command to run, correct by construction.
@@ -12,13 +12,14 @@
  * are data rather than prose, they can be tested — and they cannot silently rot
  * the way a README does.
  *
- * Adding an eighth agent should be one entry here and nothing else.
+ * Adding an eighth agent should be one entry in agent-catalogue.ts and
+ * nothing else.
  *
  * Not every student's setup fits a catalogue entry, though — a local model
  * server or a small provider has no fixed host to hard-code. For those, the
  * wizard offers "Custom base URL" wherever it offers a provider, and builds a
  * CustomTarget from what the student types instead of looking one up. See
- * resolveCustomTarget below.
+ * resolveCustomTarget in custom-target.ts.
  */
 
 import { AGENTS } from "./agent-catalogue";
@@ -69,7 +70,7 @@ export function listAgents(): AgentSummary[] {
     label: agent.label,
     supported: agent.providers != null,
     // An alwaysCustom agent never shows the provider question — askChoice
-    // skips straight past it (see agent.alwaysCustom above) — regardless of
+    // skips straight past it (see AgentEntry.alwaysCustom in agent-setup.ts) — regardless of
     // how many internal templates its catalogue entry holds for
     // findCustomTemplate to pick between. Junie is the first alwaysCustom
     // agent with more than one, so this used to be true by coincidence for
@@ -156,7 +157,7 @@ export function shouldLogRequest(
  * port and the same platform and it gives back the same answer. `platform`
  * decides only the shell syntax of the printed command — POSIX `KEY=value
  * bin` everywhere except win32, where PowerShell needs `$env:KEY = 'value'`
- * statements instead (see withEnv). The caller reads `process.platform`
+ * statements instead (see withEnv in custom-target.ts). The caller reads `process.platform`
  * once and passes it in, the same way it already does for `port`.
  */
 // oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule

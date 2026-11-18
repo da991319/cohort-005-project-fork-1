@@ -116,7 +116,7 @@ function upstreamBaseUrlWithPath(url: URL): string {
  * An agent with more than one provider picks by matching the chosen wire
  * format against each provider's `customTemplateFor` tags — and only that:
  * an untagged provider is untagged on purpose (see the field's own doc,
- * above), so a format with no exact match returns `undefined` rather than
+ * in agent-setup.ts), so a format with no exact match returns `undefined` rather than
  * borrowing an unrelated provider's command. `resolveCustomTarget` already
  * degrades honestly when this returns nothing — a bare command, no setup
  * file, no borrowed notes — which is the correct outcome here, not a bug to
@@ -287,7 +287,7 @@ export function resolveCustomTarget(
     // template is the anthropic or openai Pi provider entry (see
     // findCustomTemplate). Every renderer this branch can be reached with
     // ("openai", "anthropic", "raw") has a Pi provider tagged for it — see
-    // the catalogue above — so this can only be missing if a future wire
+    // the catalogue in agent-catalogue.ts — so this can only be missing if a future wire
     // format is added there without a matching Pi template.
     if (!template) {
       return {

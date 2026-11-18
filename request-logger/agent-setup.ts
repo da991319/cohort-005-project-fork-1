@@ -79,7 +79,7 @@ export const PI_NOTE =
  * same provider. Pi replaces that provider's whole built-in model catalogue
  * with whatever `models` lists — see resolveCustomTarget's Pi branch, which
  * is the only caller that passes it. Omitted, as it is for every catalogue
- * entry above, Pi keeps its built-in catalogue for that provider, which is
+ * entry in agent-catalogue.ts, Pi keeps its built-in catalogue for that provider, which is
  * correct there because those routes really do talk to Anthropic or OpenAI.
  */
 export function piModels(
@@ -135,7 +135,7 @@ export const OMP_NOTE =
  * by wire format: Junie's proxy entry declares a `kind` — the protocol Junie
  * itself will speak on the wire — so a mismatched kind does not 404, it just
  * sends the wrong shape of request. That is why Junie gets two catalogue
- * providers below (tagged by customTemplateFor) instead of OMP's one: the
+ * providers in agent-catalogue.ts (tagged by customTemplateFor) instead of OMP's one: the
  * kind, and the auth header format that goes with it, must track the
  * renderer the student actually picked.
  *
