@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { CUSTOM_ID, customTargetNeedsModel, resolveChoice } from "./agents";
-import { PORT, customTarget } from "./agents.test-helpers";
+import { PORT, customTarget } from "./agents.fixtures";
 
 // ---------------------------------------------------------------------------
 // Custom base URL — resolving a target the catalogue does not know about

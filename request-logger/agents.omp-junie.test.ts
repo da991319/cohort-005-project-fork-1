@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { resolveChoice } from "./agents";
-import { PORT, customTarget } from "./agents.test-helpers";
+import { PORT, customTarget } from "./agents.fixtures";
 
 // ---------------------------------------------------------------------------
 // OMP — every setup is custom

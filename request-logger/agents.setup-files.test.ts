@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { resolveChoice } from "./agents";
-import { PORT, target } from "./agents.test-helpers";
+import { PORT, target } from "./agents.fixtures";
 
 describe("resolveChoice — setup files", () => {
   it("gives OpenCode a config file as the durable option", () => {

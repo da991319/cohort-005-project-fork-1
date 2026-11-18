@@ -6,7 +6,7 @@ import {
   OTHER_ID,
   resolveChoice,
 } from "./agents";
-import { PORT, target } from "./agents.test-helpers";
+import { PORT, target } from "./agents.fixtures";
 
 describe('resolveChoice — "Other"', () => {
   it("asks for the missing agent instead of failing", () => {

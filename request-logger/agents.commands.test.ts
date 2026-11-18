@@ -1,6 +1,6 @@
 import { describe, it, expect } from "vitest";
 import { resolveChoice } from "./agents";
-import { target } from "./agents.test-helpers";
+import { target } from "./agents.fixtures";
 
 describe("resolveChoice — commands", () => {
   it("turns tool search back on for Claude Code", () => {
