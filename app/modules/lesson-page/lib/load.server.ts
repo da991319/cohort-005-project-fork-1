@@ -28,6 +28,7 @@ import {
   getQuizWithQuestions,
 } from "./quiz.server";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loadLessonPage(
   decisions: Extract<CourseDecisions, { found: true }>,
   lessonId: number
@@ -99,6 +100,7 @@ export async function loadLessonPage(
       if (lesson.videoUrl) {
         lastWatchPosition = getLastWatchPosition(currentUserId, lessonId);
         const videoDurationSeconds = (lesson.durationMinutes ?? 0) * 60;
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (videoDurationSeconds > 0) {
           watchProgress = calculateWatchProgress(
             currentUserId,
