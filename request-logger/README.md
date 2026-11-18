@@ -348,7 +348,7 @@ Be fair to the tool when you judge a failure.
   (`config.json`, custom proxies, and CLI reference). It has not been driven
   against a real Junie install. If the proxy `kind`, the config file's
   precise shape, or the header format is wrong, that is the likely reason,
-  and the fix is one line in `agents.ts`.
+  and the fix is one line in `agent-catalogue.ts`.
 - **Antigravity CLI is verified against published docs only, the same way
   Junie is.** Antigravity CLI is also closed source. Its API-key route was
   checked against Google's own Antigravity CLI documentation (installation,
@@ -362,17 +362,17 @@ Be fair to the tool when you judge a failure.
 - **Windows is not tested end to end either.** WSL and Git Bash need no
   special handling — they are POSIX shells, so they use the same command as
   Mac and Linux. Native PowerShell gets its own `$env:NAME = 'value'` syntax
-  instead (see `withEnv` in `agents.ts`), verified by unit test but not by
+  instead (see `withEnv` in `custom-target.ts`), verified by unit test but not by
   running a real agent against it on Windows. Command Prompt (`cmd.exe`) is
   not supported; use PowerShell, which is the default terminal in Windows
   Terminal and VS Code.
 
 If one of them is wrong, it is worth reporting, and the fix is likely to be one
-line in `agents.ts`.
+line in `agent-catalogue.ts`.
 
 ## Extending it
 
-- **Add an agent:** add one entry to the catalogue in `agents.ts`, giving its
+- **Add an agent:** add one entry to the catalogue in `agent-catalogue.ts`, giving its
   upstream host, its renderer, its base URL suffix, and its command. That is the
   whole job. The wizard, the banner and the routing all read from there, so
   nothing else needs to change.
@@ -380,7 +380,7 @@ line in `agents.ts`.
   no upstream host, set `alwaysCustom: true`, and give its one provider entry a
   bin and a setup file. The wizard then skips the provider question for it
   entirely and asks the two custom-base-url questions directly. See the OMP
-  entry in `agents.ts` for the whole shape.
+  entry in `agent-catalogue.ts` for the whole shape.
 - **Add a wire format:** add a renderer in `render.ts` and name it on the
   catalogue entry. Unknown shapes already fall back to pretty-printed JSON, so
   you can iterate safely.
