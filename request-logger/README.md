@@ -357,8 +357,8 @@ Be fair to the tool when you judge a failure.
   at all — see "Antigravity CLI" above for why that route is left out.
 - **A custom base URL is only as tested as the agent it is attached to.** The
   base URL and wire format mechanism itself is tested directly (see
-  `agents.test.ts`); a specific third-party server behind it has not
-  necessarily been driven end to end.
+  `agents.custom.test.ts` and `agents.custom-commands.test.ts`); a specific
+  third-party server behind it has not necessarily been driven end to end.
 - **Windows is not tested end to end either.** WSL and Git Bash need no
   special handling — they are POSIX shells, so they use the same command as
   Mac and Linux. Native PowerShell gets its own `$env:NAME = 'value'` syntax
