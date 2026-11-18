@@ -28,7 +28,6 @@ const BASELINE = [
   "app/routes/instructor.$courseId.tsx",
   "app/routes/instructor.analytics.tsx",
   "request-logger/README.md",
-  "request-logger/agents.test.ts",
   "request-logger/agents.ts",
   "request-logger/proxy.ts",
   "request-logger/render.ts",
