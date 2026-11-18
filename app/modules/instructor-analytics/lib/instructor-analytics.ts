@@ -41,7 +41,7 @@ import {
   type AnalyticsRange,
 } from "~/lib/analytics";
 import { getDiscountForCountry } from "~/lib/ppp";
-import { calendarDay, lastDayOfWindow } from "~/lib/refunds.server";
+import { calendarDay, lastDayOfWindow } from "~/lib/refunds-eligibility.server";
 
 // ─── Instructor Analytics ───
 // Everything the instructor analytics page shows, computed in one call from

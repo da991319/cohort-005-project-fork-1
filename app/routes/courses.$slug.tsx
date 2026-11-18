@@ -17,7 +17,10 @@ import {
   LessonProgressStatus,
 } from "~/db/schema";
 import { eq, and, or, sql } from "drizzle-orm";
-import { getRefundOffer, type RefundOffer } from "~/lib/refunds.server";
+import {
+  getRefundOffer,
+  type RefundOffer,
+} from "~/lib/refunds-eligibility.server";
 import { Card, CardContent, CardHeader } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";

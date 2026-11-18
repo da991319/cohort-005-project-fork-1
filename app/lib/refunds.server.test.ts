@@ -6,16 +6,20 @@ import * as schema from "~/db/schema";
 import { LessonProgressStatus, RefundStatus, UserRole } from "~/db/schema";
 import {
   approveRefundRequest,
-  checkRefundRequest,
   declineRefundRequest,
+} from "./refunds-decisions.server";
+import {
+  checkRefundRequest,
   getNewestIndividualPurchase,
   getRefundOffer,
   getSeatAvailability,
+} from "./refunds-eligibility.server";
+import {
   listRefundRequestsForBuyer,
   listRefundRequestsForReview,
   listTeamLicences,
   raiseRefundRequest,
-} from "./refunds.server";
+} from "./refunds-requests.server";
 import { isBookmarked, toggleBookmark } from "./bookmarks.server";
 import { getNote, saveNote } from "./notes.server";
 import {

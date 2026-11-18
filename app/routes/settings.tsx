@@ -16,7 +16,7 @@ import { data, isRouteErrorResponse, Link } from "react-router";
 import { db } from "~/db";
 import { eq } from "drizzle-orm";
 import { formatPrice } from "~/lib/utils";
-import { listRefundRequestsForBuyer } from "~/lib/refunds.server";
+import { listRefundRequestsForBuyer } from "~/lib/refunds-requests.server";
 import { Switch } from "~/components/ui/switch";
 import {
   defaultNotifications,

@@ -6,7 +6,7 @@ import type { Route } from "./+types/redeem.$code";
 import { people } from "~/modules/permissions/person.server";
 import { resolveCountry } from "~/lib/country.server";
 import { parseParams, parseFormData } from "~/lib/validation";
-import { getSeatAvailability } from "~/lib/refunds.server";
+import { getSeatAvailability } from "~/lib/refunds-eligibility.server";
 import { isEnrolled } from "~/lib/enrollments.server";
 import { defaultNotifications } from "~/lib/notifications.server";
 import {

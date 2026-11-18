@@ -21,9 +21,9 @@ import {
 import { eq, and } from "drizzle-orm";
 import {
   getSeatAvailability,
-  listTeamLicences,
   type SeatAvailability,
-} from "~/lib/refunds.server";
+} from "~/lib/refunds-eligibility.server";
+import { listTeamLicences } from "~/lib/refunds-requests.server";
 import { formatPrice } from "~/lib/utils";
 
 function getTeamForAdmin(userId: number) {

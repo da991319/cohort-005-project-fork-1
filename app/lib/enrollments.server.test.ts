@@ -2,7 +2,8 @@ import { describe, it, expect, beforeEach, vi } from "vitest";
 import { createTestDb, seedBaseData, type TestDb } from "~/test/setup";
 import * as schema from "~/db/schema";
 import { enrollStudent, isEnrolled } from "./enrollments.server";
-import { approveRefundRequest, raiseRefundRequest } from "./refunds.server";
+import { approveRefundRequest } from "./refunds-decisions.server";
+import { raiseRefundRequest } from "./refunds-requests.server";
 import {
   fakeNotifications,
   type FakeNotifications,

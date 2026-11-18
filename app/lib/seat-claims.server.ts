@@ -7,7 +7,7 @@ import {
   isEnrolled,
   notifyInstructorOfEnrollment,
 } from "~/lib/enrollments.server";
-import { getSeatAvailability } from "~/lib/refunds.server";
+import { getSeatAvailability } from "~/lib/refunds-eligibility.server";
 import {
   sendSafely,
   findNotificationPerson,

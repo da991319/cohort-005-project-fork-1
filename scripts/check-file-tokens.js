@@ -20,7 +20,6 @@ const IGNORED = [
 // at its size. Remove each entry in the commit that splits the file.
 const BASELINE = [
   "app/lib/refunds.server.test.ts",
-  "app/lib/refunds.server.ts",
   "app/modules/instructor-analytics/lib/instructor-analytics.ts",
   "app/modules/instructor-analytics/tests/instructor-analytics.test.ts",
   "app/routes/courses.$slug.tsx",

@@ -16,9 +16,11 @@ import { formatPrice } from "~/lib/utils";
 import {
   approveRefundRequest,
   declineRefundRequest,
+} from "~/lib/refunds-decisions.server";
+import {
   listRefundRequestsForReview,
   type RefundRequestForReview,
-} from "~/lib/refunds.server";
+} from "~/lib/refunds-requests.server";
 import { RULE_BREAK_LABELS } from "~/lib/refund-rules";
 import { sendEmail } from "~/lib/mailer.server";
 import { defaultNotifications } from "~/lib/notifications.server";

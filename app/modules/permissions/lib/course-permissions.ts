@@ -2,7 +2,7 @@ import { data } from "react-router";
 import { and, eq } from "drizzle-orm";
 import { courses, enrollments, lessons, modules } from "~/db/schema";
 import { checkCountryLock, countryName } from "~/lib/ppp";
-import { getNewestIndividualPurchase } from "~/lib/refunds.server";
+import { getNewestIndividualPurchase } from "~/lib/refunds-eligibility.server";
 import { getPerson, SIGNED_OUT_MESSAGE, type Db, type Person } from "./person";
 
 export type Capability = "view" | "take" | "manage";

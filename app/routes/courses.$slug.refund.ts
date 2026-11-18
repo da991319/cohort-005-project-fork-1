@@ -6,7 +6,7 @@ import { db } from "~/db";
 import { courses, purchases } from "~/db/schema";
 import { eq } from "drizzle-orm";
 import { parseFormData, parseParams } from "~/lib/validation";
-import { raiseRefundRequest } from "~/lib/refunds.server";
+import { raiseRefundRequest } from "~/lib/refunds-requests.server";
 import { defaultNotifications } from "~/lib/notifications.server";
 import { sendEmail } from "~/lib/mailer.server";
 
