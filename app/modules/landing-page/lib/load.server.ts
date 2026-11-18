@@ -38,7 +38,8 @@ function loadFeaturedCourses(database: Db) {
 }
 
 function loadCatalogueStats(database: Db) {
-  const catalogue = database
+  // An aggregate with no GROUP BY always returns exactly one row.
+  const [catalogue] = database
     .select({
       courses: countDistinct(courses.id),
       categories: countDistinct(courses.categoryId),
@@ -46,22 +47,17 @@ function loadCatalogueStats(database: Db) {
     })
     .from(courses)
     .where(isPublished)
-    .get();
+    .all();
 
-  const lessonTotal = database
+  const [lessonTotal] = database
     .select({ lessons: sql<number>`count(*)` })
     .from(lessons)
     .innerJoin(modules, eq(lessons.moduleId, modules.id))
     .innerJoin(courses, eq(modules.courseId, courses.id))
     .where(isPublished)
-    .get();
+    .all();
 
-  return {
-    courses: catalogue?.courses ?? 0,
-    categories: catalogue?.categories ?? 0,
-    instructors: catalogue?.instructors ?? 0,
-    lessons: lessonTotal?.lessons ?? 0,
-  };
+  return { ...catalogue, lessons: lessonTotal.lessons };
 }
 
 export function loadLandingPage(database: Db) {
