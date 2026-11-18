@@ -115,7 +115,11 @@
       }
     },
     {
-      "files": ["request-logger/render.ts", "request-logger/render.test.ts"],
+      "files": [
+        "request-logger/render.ts",
+        "request-logger/render-request.ts",
+        "request-logger/render.test.ts"
+      ],
       "rules": {
         "typescript/no-explicit-any": "off"
       }

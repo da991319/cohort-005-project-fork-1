@@ -381,8 +381,8 @@ line in `agents.ts`.
   bin and a setup file. The wizard then skips the provider question for it
   entirely and asks the two custom-base-url questions directly. See the OMP
   entry in `agents.ts` for the whole shape.
-- **Add a wire format:** add a renderer in `render.ts` and name it on the
-  catalogue entry. Unknown shapes already fall back to pretty-printed JSON, so
+- **Add a wire format:** add a request renderer in `render-request.ts`, its
+  response renderer in `render.ts`, and name it on the catalogue entry. Unknown shapes already fall back to pretty-printed JSON, so
   you can iterate safely.
 - **Watch the base URL suffix.** It is per-agent on purpose and never a global
   rule. Some agents append the whole path to what you give them and so must not
