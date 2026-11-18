@@ -1,4 +1,4 @@
-import { db } from "~/db";
+import type { Db } from "./database";
 import {
   quizzes,
   quizQuestions,
@@ -8,11 +8,11 @@ import {
 } from "~/db/schema";
 import { and, desc, eq } from "drizzle-orm";
 
-export function getQuizByLessonId(lessonId: number) {
+export function getQuizByLessonId(db: Db, lessonId: number) {
   return db.select().from(quizzes).where(eq(quizzes.lessonId, lessonId)).get();
 }
 
-export function getQuizWithQuestions(quizId: number) {
+export function getQuizWithQuestions(db: Db, quizId: number) {
   const quiz = db.select().from(quizzes).where(eq(quizzes.id, quizId)).get();
   if (!quiz) return null;
 
@@ -35,7 +35,7 @@ export function getQuizWithQuestions(quizId: number) {
   return { ...quiz, questions: questionsWithOptions };
 }
 
-export function getBestAttempt(userId: number, quizId: number) {
+export function getBestAttempt(db: Db, userId: number, quizId: number) {
   return db
     .select()
     .from(quizAttempts)
@@ -62,10 +62,18 @@ type QuestionResult = {
   correctOptionId: number | null;
 };
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export function computeResult(
-  userId: number,
-  quizId: number,
-  selectedAnswers: Record<number, number>
+  db: Db,
+  {
+    userId,
+    quizId,
+    selectedAnswers,
+  }: {
+    userId: number;
+    quizId: number;
+    selectedAnswers: Record<number, number>;
+  }
 ) {
   try {
     const quiz = db.select().from(quizzes).where(eq(quizzes.id, quizId)).get();
@@ -175,6 +183,6 @@ export function computeResult(
   }
 }
 
-export function getQuizById(quizId: number) {
+export function getQuizById(db: Db, quizId: number) {
   return db.select().from(quizzes).where(eq(quizzes.id, quizId)).get();
 }

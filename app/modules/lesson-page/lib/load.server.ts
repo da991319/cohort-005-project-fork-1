@@ -1,5 +1,5 @@
 import { data } from "react-router";
-import { db } from "~/db";
+import type { Db } from "./database";
 import type {
   CourseDecisions,
   DenialReason,
@@ -28,16 +28,18 @@ import {
   getQuizWithQuestions,
 } from "./quiz.server";
 
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
 export async function loadLessonPage(
+  db: Db,
   decisions: Extract<CourseDecisions, { found: true }>,
   lessonId: number
 ) {
   const { course, person, enrolled, view, take, manage } = decisions;
   const currentUserId = person?.id ?? null;
 
-  const courseWithDetails = getCourseWithDetails(course.id);
-  const lesson = getLessonById(lessonId);
-  const mod = lesson ? getModuleById(lesson.moduleId) : undefined;
+  const courseWithDetails = getCourseWithDetails(db, course.id);
+  const lesson = getLessonById(db, lessonId);
+  const mod = lesson ? getModuleById(db, lesson.moduleId) : undefined;
   if (!courseWithDetails || !lesson || !mod) {
     throw data("Lesson not found", { status: 404 });
   }
@@ -82,12 +84,13 @@ export async function loadLessonPage(
     // Student under a Country Lock gets none.
     if (take.allowed) {
       // Mark lesson as in-progress when viewed
-      markLessonInProgress(currentUserId, lessonId);
-      const progress = getLessonProgress(currentUserId, lessonId);
+      markLessonInProgress(db, currentUserId, lessonId);
+      const progress = getLessonProgress(db, currentUserId, lessonId);
       lessonStatus = progress?.status ?? null;
 
       // Get progress for all lessons in course (for curriculum sidebar)
       const progressRecords = getLessonProgressForCourse(
+        db,
         currentUserId,
         course.id
       );
@@ -97,12 +100,13 @@ export async function loadLessonPage(
 
       // Get video watch state for resume and progress display
       if (lesson.videoUrl) {
-        lastWatchPosition = getLastWatchPosition(currentUserId, lessonId);
+        lastWatchPosition = getLastWatchPosition(db, currentUserId, lessonId);
         const videoDurationSeconds = (lesson.durationMinutes ?? 0) * 60;
+        // oxlint-disable-next-line max-depth -- legacy: predates this rule
         if (videoDurationSeconds > 0) {
           watchProgress = calculateWatchProgress(
-            currentUserId,
-            lessonId,
+            db,
+            { userId: currentUserId, lessonId },
             videoDurationSeconds
           );
         }
@@ -112,8 +116,8 @@ export async function loadLessonPage(
 
   // Everything from here on is behind the can-view-content bar above:
   // comments, Bookmarks and Notes are confidential to the course.
-  const instructor = getUserById(course.instructorId);
-  const comments = await renderThread(getLessonThread(lessonId));
+  const instructor = getUserById(db, course.instructorId);
+  const comments = await renderThread(getLessonThread(db, lessonId));
 
   const bookmarked = currentUserId
     ? isBookmarked(db, currentUserId, lessonId)
@@ -133,7 +137,7 @@ export async function loadLessonPage(
     currentIndex < allLessons.length - 1 ? allLessons[currentIndex + 1] : null;
 
   // Check for quiz attached to this lesson
-  const quizRecord = getQuizByLessonId(lessonId);
+  const quizRecord = getQuizByLessonId(db, lessonId);
   let quiz: {
     id: number;
     title: string;
@@ -149,7 +153,7 @@ export async function loadLessonPage(
   let bestAttempt: { score: number; passed: boolean } | null = null;
 
   if (quizRecord) {
-    const quizData = getQuizWithQuestions(quizRecord.id);
+    const quizData = getQuizWithQuestions(db, quizRecord.id);
     if (quizData) {
       // Strip isCorrect from options so answers aren't leaked to the client
       quiz = {
@@ -170,7 +174,7 @@ export async function loadLessonPage(
     }
 
     if (currentUserId) {
-      const best = getBestAttempt(currentUserId, quizRecord.id);
+      const best = getBestAttempt(db, currentUserId, quizRecord.id);
       if (best) {
         bestAttempt = { score: best.score, passed: best.passed };
       }

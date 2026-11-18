@@ -1,8 +1,9 @@
-import { db } from "~/db";
+import type { Db } from "./database";
 import { categories, courses, lessons, modules, users } from "~/db/schema";
 import { eq, or } from "drizzle-orm";
 
-export function getCourseWithDetails(id: number) {
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
+export function getCourseWithDetails(db: Db, id: number) {
   const course = db
     .select({
       id: courses.id,
@@ -59,15 +60,15 @@ export function getCourseWithDetails(id: number) {
   };
 }
 
-export function getLessonById(id: number) {
+export function getLessonById(db: Db, id: number) {
   return db.select().from(lessons).where(eq(lessons.id, id)).get();
 }
 
-export function getModuleById(id: number) {
+export function getModuleById(db: Db, id: number) {
   return db.select().from(modules).where(eq(modules.id, id)).get();
 }
 
-export function getUserById(id: number) {
+export function getUserById(db: Db, id: number) {
   return db.select().from(users).where(eq(users.id, id)).get();
 }
 

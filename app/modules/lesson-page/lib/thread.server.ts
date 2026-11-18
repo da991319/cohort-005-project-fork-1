@@ -1,4 +1,4 @@
-import { db } from "~/db";
+import type { Db } from "./database";
 import {
   comments,
   courses,
@@ -30,7 +30,7 @@ type ThreadComment = {
   replies: ThreadComment[];
 };
 
-export function getCourseForLesson(lessonId: number) {
+export function getCourseForLesson(db: Db, lessonId: number) {
   return db
     .select({
       courseId: courses.id,
@@ -45,12 +45,13 @@ export function getCourseForLesson(lessonId: number) {
     .get();
 }
 
-export function getCommentById(commentId: number) {
+export function getCommentById(db: Db, commentId: number) {
   return db.select().from(comments).where(eq(comments.id, commentId)).get();
 }
 
-export function getLessonThread(lessonId: number): ThreadComment[] {
-  const course = getCourseForLesson(lessonId);
+// oxlint-disable-next-line max-lines-per-function -- legacy: predates this rule
+export function getLessonThread(db: Db, lessonId: number): ThreadComment[] {
+  const course = getCourseForLesson(db, lessonId);
   if (!course) return [];
 
   const rows = db
