@@ -18,9 +18,9 @@ export function LandingStats({ stats }: { stats: CatalogueStats }) {
             <div className="flex size-12 shrink-0 items-center justify-center rounded-lg bg-primary/10">
               <Icon className="size-6 text-primary" />
             </div>
-            <div>
-              <dd className="text-2xl font-bold">{value}</dd>
+            <div className="flex flex-col-reverse">
               <dt className="text-sm text-muted-foreground">{label}</dt>
+              <dd className="text-2xl font-bold">{value}</dd>
             </div>
           </div>
         ))}
